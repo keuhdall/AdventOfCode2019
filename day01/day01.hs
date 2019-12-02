@@ -17,7 +17,7 @@ checkInput s = if all isDigit s then Just (read s::Int) else Nothing
 main :: IO ()
 main = do
     content <- readFile filename
-    let values = fmap sum $ sequence $ fmap countFuel <$> checkInput <$> lines content
-    case (values >>= (\x -> pure $ x + countRemainingFuel x)) of
+    let values = fmap sum $ sequence $ fmap countRemainingFuel <$> checkInput <$> lines content
+    case values of
         Just v  -> putStrLn $ show v
         Nothing -> putStrLn "Invalid input"
